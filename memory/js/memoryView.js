@@ -24,7 +24,7 @@ class MemoryView extends View {
       ${data
         .map(el => {
           return `<div class="memory-field">
-          <img data-number="${el}" class="field-icon hidden-icon" src="icon-${el}.svg" alt="memory icon"  />
+          <img data-number="${el}" class="field-icon hidden-icon" src="main/img/icon-${el}.svg" alt="memory icon"  />
         </div>`;
         })
         .join("")}
