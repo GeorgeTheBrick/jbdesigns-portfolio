@@ -1,0 +1,21 @@
+{
+  "name": "jbdesigns",
+  "version": "1.0.0",
+  "description": "HTML CSS JS Portfolio",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Jure Brumec",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/packager-raw-url": "^2.3.2",
+    "@parcel/transformer-webmanifest": "^2.3.2",
+    "parcel": "^2.3.2"
+  },
+  "browserslist": "> 0.25%, last 2 versions, not dead",
+  "dependencies": {
+    "core-js": "^3.21.1"
+  }
+}
