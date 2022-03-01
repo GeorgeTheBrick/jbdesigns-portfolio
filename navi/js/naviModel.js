@@ -1,4 +1,3 @@
-import "regenerator-runtime/runtime";
 export const displayDate = function () {
   const months = [
     "January",

@@ -2,7 +2,6 @@ import * as model from "./naviModel.js";
 import naviView from "./naviView.js";
 import mainView from "../../main/js/mainView.js";
 import { controlMemory } from "../../memory/js/memoryController.js";
-import "regenerator-runtime/runtime";
 
 export const controlNavi = async function () {
   try {

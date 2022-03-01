@@ -1,7 +1,5 @@
 import View from "../../main/js/View.js";
-import closeIcon from "url:../../main/img/close-outline.svg";
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+
 class NaviView extends View {
   parentElement = document.querySelector(".section-app");
 
@@ -21,7 +19,7 @@ class NaviView extends View {
     <div class="navi-section">           
     <div class="navi-container grid--navi">
       <button class="navi-close-btn" aria-label="Close navi app">
-        <img src="${closeIcon}" alt="close button" />
+        <img src="main/img/close-outline.svg" alt="close button" />
       </button>
       <div class="navi-sidebar">
         <div class="navi-logo">
@@ -120,7 +118,7 @@ class NaviView extends View {
 
       this.markerArray.push(marker);
       this.dataArray.push(dataObject);
-      this.renderFormEntry();
+      this.renderFormEntry(...this.dataArray.slice(-1));
       this.checkHiddenForm();
       this.setLocalStorage();
     };
@@ -128,18 +126,18 @@ class NaviView extends View {
     form.addEventListener("submit", onSubmit.bind(this));
   }
 
-  renderFormEntry() {
+  renderFormEntry(data) {
     const entryBox = document.querySelector(".navi-form-box");
-    const markup = ` <div data-coords="${this.mapEv.latlng.lat}, ${this.mapEv.latlng.lng}" class="navi-sidebar--entry entry-submited ">
-        <div class="navi-form-submited">
-          <button class="delete-entry-btn" aria-label="Delete entry">
-            <img class="delete-entry-icon" src="${closeIcon}" alt="delete entry button" />
-          </button>
-          <label class="navi-label navi-date">${this.date}</label>
-          <span class="input-text">${this.naviInput.value}</span>
-          <span class="entry-coords">${this.entryCoords}</span>
-        </div>
-      </div> `;
+    const markup = ` <div data-coords="${data.lat}, ${data.lng}" class="navi-sidebar--entry entry-submited ">
+    <div class="navi-form-submited">
+      <button class="delete-entry-btn" aria-label="Delete entry">
+      <img class="delete-entry-icon" src="main/img/close-outline.svg" alt="delete entry button" />
+      </button>
+      <label class="navi-label navi-date">${data.date}</label>
+      <span class="input-text">${data.name}</span>
+      <span class="entry-coords">${data.coords}</span>
+    </div>
+  </div> `;
 
     entryBox.insertAdjacentHTML("afterbegin", markup);
   }
@@ -212,22 +210,6 @@ class NaviView extends View {
     btnClose.addEventListener("click", resetArrays.bind(this));
   }
 
-  renderFormStorage(data) {
-    const entryBox = document.querySelector(".navi-form-box");
-    const markup = ` <div data-coords="${data.lat}, ${data.lng}" class="navi-sidebar--entry entry-submited ">
-    <div class="navi-form-submited">
-      <button class="delete-entry-btn" aria-label="Delete entry">
-      <img class="delete-entry-icon" src="${closeIcon}" alt="delete entry button" />
-      </button>
-      <label class="navi-label navi-date">${data.date}</label>
-      <span class="input-text">${data.name}</span>
-      <span class="entry-coords">${data.coords}</span>
-    </div>
-  </div> `;
-
-    entryBox.insertAdjacentHTML("afterbegin", markup);
-  }
-
   setLocalStorage() {
     localStorage.setItem("entries", JSON.stringify(this.dataArray));
   }
@@ -254,7 +236,7 @@ class NaviView extends View {
         .openPopup();
 
       this.markerArray.push(marker);
-      this.renderFormStorage(el);
+      this.renderFormEntry(el);
     });
   }
 }
