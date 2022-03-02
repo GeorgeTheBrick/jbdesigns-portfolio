@@ -92,9 +92,7 @@ class NaviView extends View {
       this.formBox.classList.add("hidden");
       const lat = this.mapEv.latlng.lat;
       const lng = this.mapEv.latlng.lng;
-      const marker = L.marker([lat, lng]);
       const entryCoords = `Lat: ${lat} <br> Lng: ${lng}`;
-      this.marker = marker;
       this.entryCoords = entryCoords;
 
       const dataObject = {
@@ -104,26 +102,29 @@ class NaviView extends View {
         name: this.naviInput.value,
         date: this.date,
       };
-
-      this.map.addLayer(marker);
-      marker
-        .bindPopup(
-          L.popup({
-            autoClose: false,
-            closeOnClick: false,
-          })
-        )
-        .setPopupContent(`${this.naviInput.value}`)
-        .openPopup();
-
-      this.markerArray.push(marker);
       this.dataArray.push(dataObject);
+      this.generateMarker(...this.dataArray.slice(-1));
       this.renderFormEntry(...this.dataArray.slice(-1));
       this.checkHiddenForm();
       this.setLocalStorage();
     };
 
     form.addEventListener("submit", onSubmit.bind(this));
+  }
+
+  generateMarker(data) {
+    const marker = L.marker([data.lat, data.lng]);
+    this.markerArray.push(marker);
+    this.map.addLayer(marker);
+    marker
+      .bindPopup(
+        L.popup({
+          autoClose: false,
+          closeOnClick: false,
+        })
+      )
+      .setPopupContent(`${data.name}`)
+      .openPopup();
   }
 
   renderFormEntry(data) {
@@ -222,20 +223,7 @@ class NaviView extends View {
     this.dataArray = entries;
 
     entries.forEach(el => {
-      const marker = L.marker([el.lat, el.lng]);
-
-      this.map.addLayer(marker);
-      marker
-        .bindPopup(
-          L.popup({
-            autoClose: false,
-            closeOnClick: false,
-          })
-        )
-        .setPopupContent(`${el.name}`)
-        .openPopup();
-
-      this.markerArray.push(marker);
+      this.generateMarker(el);
       this.renderFormEntry(el);
     });
   }
