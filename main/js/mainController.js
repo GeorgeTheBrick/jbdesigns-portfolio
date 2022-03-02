@@ -11,6 +11,7 @@ const naviInit = function () {
 };
 
 const init = function () {
+  mainView.topOnRefresh();
   mainView.addHandlerMobileNav();
   mainView.addHandlerSmoothScroll();
   mainView.renderStickyNav();

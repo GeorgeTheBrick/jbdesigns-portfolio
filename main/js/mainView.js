@@ -50,6 +50,12 @@ class mainView extends View {
     });
   }
 
+  topOnRefresh() {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+  }
+
   addHandlerSmoothScroll() {
     const allLinks = document.querySelectorAll(".scroll-link");
 
