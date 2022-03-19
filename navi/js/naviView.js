@@ -23,7 +23,7 @@ class NaviView extends View {
       </button>
       <div class="navi-sidebar">
         <div class="navi-logo">
-          <span class="material-icons material-icons--navi navi-icon">
+          <span class="material-icons material-icons--navi navi-icon notranslate">
             place
           </span>
           <span class="navi-heading">Navi</span>

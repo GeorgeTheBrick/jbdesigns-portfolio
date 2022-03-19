@@ -16,7 +16,7 @@ class mainView extends View {
     <div class="app-box memory-app-box">
       <h3 class="heading-tertiary heading-memory">Memory</h3>
       <button class="btn btn-app memory-btn">
-        <span class="material-icons material-icons--app memory-icon"
+        <span class="material-icons material-icons--app memory-icon notranslate"
           >window</span
         >
       </button>
@@ -29,7 +29,7 @@ class mainView extends View {
     <div class="app-box navi-app-box">
       <h3 class="heading-tertiary heading-navi">Navi</h3>
       <button class="btn btn-app navi-btn">
-        <span class="material-icons material-icons--app navi-icon">
+        <span class="material-icons material-icons--app navi-icon notranslate">
           place
         </span>
       </button>
